@@ -1,0 +1,2 @@
+# VIEWS
+# App = window.WeddingApp
