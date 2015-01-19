@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         dest: 'build/vendor.js',
         cssDest: 'build/vendor.css',
         dependencies: {
-          'backbone': ['lodash', 'jquery'],
+          'backbone': ['underscore', 'jquery'],
           'bootstrap': 'jquery'
         },
         bowerOptions: {
