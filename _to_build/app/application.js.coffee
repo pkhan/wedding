@@ -6,4 +6,4 @@ App.Templates = {}
 App.Routers = {}
 App.Collections = {}
 
-App.stuff = "things"
+App.stuff = "thingsa"

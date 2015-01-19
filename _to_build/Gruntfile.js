@@ -42,6 +42,12 @@ module.exports = function(grunt) {
         src: 'app/**',
         dest: '../_harp/js/application.js.coffee'
       }
+    },
+    watch: {
+      app: {
+        files: 'app/**',
+        tasks: 'concat'
+      }
     }
   });
 
