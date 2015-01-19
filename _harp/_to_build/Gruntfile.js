@@ -27,20 +27,20 @@ module.exports = function(grunt) {
     },
     uglify: {
       vendor: {
-        dest: '../_harp/js/vendor.min.js',
+        dest: '../js/vendor.min.js',
         src: 'build/vendor.js'
       }
     },
     cssmin: {
       vendor: {
-        dest: '../_harp/css/vendor.min.css',
+        dest: '../css/vendor.min.css',
         src: 'build/vendor.css'
       }
     },
     concat: {
       app: {
         src: 'app/**',
-        dest: '../_harp/js/application.js.coffee'
+        dest: '../js/application.js.coffee'
       }
     },
     watch: {
