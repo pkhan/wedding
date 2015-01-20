@@ -87,19 +87,17 @@ body {
 }
 
 .modal-outer {
-  background: url('/images/simple_red_heart.svg');
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: auto 140%;
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .modal-inner {
-    width: 75%;
-    height: 50%;
-    margin: 125px auto;
     background-color: #fff;
   }
 }
