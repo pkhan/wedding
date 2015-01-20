@@ -30,13 +30,13 @@ module.exports = function(grunt) {
     },
     concat: {
       app: {
-        src: 'app/**',
+        src: ['app/00application.js.coffee', 'app/*/*'],
         dest: '../js/application.js.coffee'
       }
     },
     watch: {
       app: {
-        files: ['application.js', 'app/*/*'],
+        files: ['app/00application.js.coffee', 'app/*/*'],
         tasks: 'concat'
       }
     }

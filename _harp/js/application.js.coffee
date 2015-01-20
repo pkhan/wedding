@@ -7,11 +7,11 @@ App.Templates = {}
 App.Routers = {}
 App.Collections = {}
 
-App.stuff = "thingsa"
+App.stuff = "thinga"
 
-drawHeart = (intersectPortion = 1/5) ->
+drawHeart = (intersectPortion = 1/3.25) ->
     radius = 200
-    draw = SVG($('.modal-outer')[0])
+    draw = SVG($('.heart-box')[0])
     pi = Math.PI
     intersectAt = intersectPortion * pi
     overlap = .9
@@ -21,8 +21,8 @@ drawHeart = (intersectPortion = 1/5) ->
 
     window.group = draw.group()
 
-    leftCircle = group.circle(radius * 2).fill({color: '#F00'})
-    rightCircle = group.circle(radius * 2).x(radius * 2 * overlap).fill({color:'#F00'})
+    leftCircle = group.circle(radius * 2).fill(color: '#F00')
+    rightCircle = group.circle(radius * 2).x(radius * 2 * overlap).fill(color:'#F00')
     polyPoints = []
 
     leftRad = pi + intersectAt
@@ -40,24 +40,18 @@ drawHeart = (intersectPortion = 1/5) ->
     polyPoints.push [rightX, rightY]
 
     bottomX = radius * 2 * overlap
-    bottomY = radius * 2 * 2
+    bottomY = radius * 2 * 1.5
     polyPoints.push [bottomX, bottomY]
 
     polyString = polyPoints.map((point) ->
         point.join(',')
     ).join(' ')
 
-    console.log polyPoints
-
-    poly = group.polygon(polyString).fill({color: '#F00'})
+    poly = group.polygon(polyString).fill(color: '#F00')
 
 $(document).ready ->
     drawHeart()
-
-
 # models
-
 # collections
-
 # VIEWS
 # App = window.WeddingApp

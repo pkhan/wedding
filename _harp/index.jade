@@ -32,7 +32,21 @@
 .bottom-part
     .container.centered
 .curtain
-.modal-outer
-    .modal-inner
-        form#rsvp-form
-
+.modal-outer.centered
+    .fluid-container
+        .heart-box
+        .row
+            .col-xs-10.col-sm-7.col-md-5.col-lg-4.modal-inner.center-margin
+                form#rsvp-form
+                    p Name
+                    input.rsvp-name
+                    br
+                    p Email
+                    input.rsvp-email
+                    br
+                    p Attendance
+                    input(type="radio" name="attending" value="yes" checked=true) 
+                    span I will be attending
+                    br
+                    input(type="radio" name="attending" value="no") 
+                    span I will NOT be attending
