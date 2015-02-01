@@ -12,17 +12,31 @@ body {
 }
 
 .picture-break {
-  min-height: 200px;
+  min-height: 400px;
   background: url('/images/looking-right.jpg');
   background-size: cover;
   background-position: 0 25%;
 }
 
+@media (max-width: 768px) {
+  .picture-break {
+    min-height: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  .date-line {
+    margin-top: 190px;
+  }
+}
+
 .top-part {
   font-family: 'Great Vibes', cursive;
   background: url('/images/proposal.jpg');
+  background-size: cover;
+  background-position: 50% 56%;
   color: #fff;
-  min-height: 200px;
+  min-height: 400px;
   text-shadow: #000 3px 0px 4px;
   h1 {
     font-size: 50px;
@@ -159,14 +173,9 @@ span.no-wrap {
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-  .the-map {
-    height: 300px;
-  }
-}
 .the-map {
   width: 100%;
-  min-height: 500px;
+  height: 100%;
 }
 
 .hotel-info {
@@ -183,16 +192,24 @@ span.no-wrap {
 
 .map-outer {
   position: relative;
+  height: 500px;
   .grab-bar {
     position: absolute;
     top: 0;
     width: 25%;
-    height: 100%;
+    bottom: 0;
     &.left-grab {
       left: 0;
+      // top: 80px;
     }
     &.right-grab {
       right: 0;
+      // top: 30px;
     }
+  }
+}
+@media (max-width: 768px) {
+  .map-outer {
+    height: 400px;
   }
 }
