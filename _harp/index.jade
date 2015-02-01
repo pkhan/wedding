@@ -1,52 +1,39 @@
-.top-part
+.outer-row.top-part
     .container.centered
-        .row.who-line
-            h1.who Chrstine &amp; Patrick are Getting Married
-        .row.date-line
-            h1.when September 5th, 2015
-.middle-part
+            .row.who-line
+                h1.who 
+                    span.no-wrap Chrstine &amp; Patrick 
+                    br.visible-xs-inline
+                    span are 
+                    br.visible-xs-inline
+                    span.no-wrap Getting Married
+            .row.date-line
+                h1.when September 5th, 2015
+
+.outer-row.info-header.hidden-xs
     .container.centered
-        .row.nav-row
-            ul.nav-bar
-                li.nav-item
-                    a(href='/info') info
-                li.nav-item
-                    a(href='/story') story
-                li.nav-item
-                    a(href='/registry') registry
-        .row.rsvp-row
-            a.btn(href='/rsvp') RSVP
+        .row.header-part
+            .col-sm-6
+                h4.venue-type ceremony
+            .col-sm-6
+                h4.venue-type reception
+
+.outer-row.middle-part
+    .container.centered
         .row.info-row
-            .col-sm-6.info-block
+            .col-sm-6.info-block.to-edge
+                h4.venue-type.visible-xs-block.hidden-sm ceremony
                 h2.venue-name Nativity Church
                 p.address.
                     210 Oak Grove Avenue
                     <br>
                     Menlo Park, California
-            .col-sm-6.info-block
+            .col-sm-6.info-block.to-edge
+                h4.venue-type.visible-xs-block.hidden-sm reception
                 h2.venue-name Garden Court Hotel
                 p.address.
                     520 Cowper Street 
                     <br>
                     Palo Alto, California
-.bottom-part
-    .container.centered
-.curtain
-.modal-outer.centered
-    .fluid-container
-        .heart-box
-        .row
-            .col-xs-10.col-sm-7.col-md-5.col-lg-4.modal-inner.center-margin
-                form#rsvp-form
-                    p Name
-                    input.rsvp-name
-                    br
-                    p Email
-                    input.rsvp-email
-                    br
-                    p Attendance
-                    input(type="radio" name="attending" value="yes" checked=true) 
-                    span I will be attending
-                    br
-                    input(type="radio" name="attending" value="no") 
-                    span I will NOT be attending
+//- .bottom-part
+//-     .container.centered
