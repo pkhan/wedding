@@ -2,6 +2,22 @@ body {
   font-family: 'Bitter', serif;
 }
 
+.outer-row {
+  background: #FFF;
+  color: #333;
+  &.alt-background {
+    background: #778EA4;
+    color: #FFF;
+  }
+}
+
+.picture-break {
+  min-height: 200px;
+  background: url('/images/looking-right.jpg');
+  background-size: cover;
+  background-position: 0 25%;
+}
+
 .top-part {
   font-family: 'Great Vibes', cursive;
   background: url('/images/proposal.jpg');
@@ -53,6 +69,10 @@ body {
 
 .nav-row {
   height: 80px;
+}
+
+.hotel-name {
+  border-bottom: solid 3px #333;
 }
 
 .nav-bar {
@@ -136,5 +156,43 @@ body {
 }
 
 span.no-wrap {
-  
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .the-map {
+    height: 300px;
+  }
+}
+.the-map {
+  width: 100%;
+  min-height: 500px;
+}
+
+.hotel-info {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  &:hover {
+    border: solid 1px #778EA4;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+.map-outer {
+  position: relative;
+  .grab-bar {
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    &.left-grab {
+      left: 0;
+    }
+    &.right-grab {
+      right: 0;
+    }
+  }
 }
