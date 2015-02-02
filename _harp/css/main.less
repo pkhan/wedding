@@ -105,15 +105,23 @@ body {
 }
 
 .btn {
-  background-color: rgb(131, 3, 0);
+  background: rgb(131, 3, 0);
   box-shadow: rgb(71, 1, 0) 3px 3px 0px 3px;
   color: #fff;
   &:hover {
+    color: #fff;
+    background: rgb(110, 3, 0);
+  }
+  &:active {
+    color: #fff;
+  }
+  &:visited {
     color: #fff;
   }
   font-size: 40px;
   border-radius: 26px;
   padding: 10px 30px;
+  margin-bottom: 20px;
 }
 
 .centered {
@@ -181,12 +189,19 @@ span.no-wrap {
 .hotel-info {
   padding-top: 1px;
   padding-bottom: 1px;
-  &:hover {
-    border: solid 1px #778EA4;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 14px;
-    padding-right: 14px;
+  // &:hover {
+  //   border: solid 1px #778EA4;
+  //   padding-top: 0;
+  //   padding-bottom: 0;
+  //   padding-left: 14px;
+  //   padding-right: 14px;
+  // }
+}
+
+.registry {
+  .row {
+    padding-top: 80px;
+    padding-bottom: 40px;
   }
 }
 
