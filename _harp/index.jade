@@ -8,7 +8,7 @@
                     br.visible-xs-inline
                     span.no-wrap Getting Married
             .row.date-line
-                h1.when September 5th, 2015
+                h1.when September 5<sup>th</sup>, 2015
 
 .outer-row.info-header.hidden-xs
     .container.centered
@@ -69,12 +69,34 @@
                     br
                     a.email(href="mailto:sheratonreservations@pahotel.com?subject=Conway and Geibel Wedding Block&body=I would like to reserve a room.%0D%0A%0D%0AGuest Name: %0D%0AArrival Date: %0D%0ADeparture Date: %0D%0AYour Address: %0D%0AYour Phone #: %0D%0AGroup Name: Conway and Geibel Wedding" target="_blank") sheratonreservations@pahotel.com
                 h4.block-days-header Block Days
-                p.block-days 
-                    span.block-day FRI | 
-                    span.glyphicon.glyphicon-heart-empty
-                    span.block-day.heart-day  SAT 
-                    span.glyphicon.glyphicon-heart-empty
-                    span.block-day  | SUN
+                .block-days
+                    .block-day
+                        span.month SEP
+                        br
+                        span.date 4
+                        br
+                        span.day FRI
+                    .block-day
+                        span.month SEP
+                        br
+                        span.glyphicon.glyphicon-heart-empty
+                        span.date  5 
+                        span.glyphicon.glyphicon-heart-empty
+                        br
+                        span.day SAT
+                    .block-day
+                        span.month SEP
+                        br
+                        span.date 6
+                        br
+                        span.day SUN
+
+                //- p.block-days 
+                //-     span.block-day FRI | 
+                //-     span.glyphicon.glyphicon-heart-empty
+                //-     span.block-day.heart-day  SAT 
+                //-     span.glyphicon.glyphicon-heart-empty
+                //-     span.block-day  | SUN
             .col-sm-4.hotel-info
                     h3.hotel-name Westin Palo Alto
                     h4.hotel-price $159/night
@@ -89,12 +111,27 @@
                         br
                         a.email(href="mailto:westinreservations@pahotel.com?subject=Conway and Geibel Wedding Block&body=I would like to reserve a room.%0D%0A%0D%0AGuest Name: %0D%0AArrival Date: %0D%0ADeparture Date: %0D%0AYour Address: %0D%0AYour Phone #: %0D%0AGroup Name: Conway and Geibel Wedding" target="_blank") westinreservations@pahotel.com
                     h4.block-days-header Block Days
-                    p.block-days 
-                        span.block-day FRI | 
-                        span.glyphicon.glyphicon-heart-empty
-                        span.block-day.heart-day  SAT 
-                        span.glyphicon.glyphicon-heart-empty
-                        span.block-day  | SUN
+                    .block-days
+                        .block-day
+                            span.month SEP
+                            br
+                            span.date 4
+                            br
+                            span.day FRI
+                        .block-day
+                            span.month SEP
+                            br
+                            span.glyphicon.glyphicon-heart-empty
+                            span.date  5 
+                            span.glyphicon.glyphicon-heart-empty
+                            br
+                            span.day SAT
+                        .block-day
+                            span.month SEP
+                            br
+                            span.date 6
+                            br
+                            span.day SUN
             .col-sm-4.hotel-info
                 h3.hotel-name The Garden Court
                 h4.hotel-price $219/night
@@ -109,11 +146,21 @@
                     br
                     span.email &nbsp;
                 h4.block-days-header Block Days
-                p.block-days 
-                    span.block-day FRI | 
-                    span.glyphicon.glyphicon-heart-empty
-                    span.block-day.heart-day  SAT 
-                    span.glyphicon.glyphicon-heart-empty
+                .block-days
+                    .block-day
+                        span.month SEP
+                        br
+                        span.date 4
+                        br
+                        span.day FRI
+                    .block-day
+                        span.month SEP
+                        br
+                        span.glyphicon.glyphicon-heart-empty
+                        span.date  5 
+                        span.glyphicon.glyphicon-heart-empty
+                        br
+                        span.day SAT
 
 .outer-row.map-outer
     iframe.the-map(src="https://www.google.com/maps/d/embed?mid=zMgcypivs_ZE.ktB7xg2PPS0A")
