@@ -14,6 +14,8 @@ body {
 .picture-break {
   min-height: 400px;
   background: url('/images/looking-right.jpg');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/looking-right.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/looking-right.jpg', sizingMethod='scale')";
   background-size: cover;
   background-position: 0 25%;
 }
@@ -33,6 +35,8 @@ body {
 .top-part {
   font-family: 'Great Vibes', cursive;
   background: url('/images/proposal.jpg');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/proposal.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/proposal.jpg', sizingMethod='scale')";
   background-size: cover;
   background-position: 50% 56%;
   color: #fff;
@@ -47,6 +51,15 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .top-part h1 {
+    font-size: 40px;
+  }
+  .top-part .date-line {
+    margin-top: 50px;
+  }
+}
+
 .info-header {
   color: #FFF;
   background: #778EA4;
@@ -55,7 +68,7 @@ body {
 @media (max-width: 768px) {
   .to-edge {
     padding: 0;
-  } 
+  }
 }
 
 .info-row {
