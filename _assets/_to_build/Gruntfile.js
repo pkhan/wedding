@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
   var harpDir = '../_harp';
   var wwwDir = '../_www';
-  var rootDir = '../../'
+  var rootDir = '../..'
 
   // Project configuration.
   grunt.initConfig({
@@ -47,8 +47,10 @@ module.exports = function(grunt) {
       harp_compile: 'harp compile ' + harpDir + ' ' + wwwDir
     },
     clean: {
-      clean_root: [rootDir + '/*'],
-      force: true
+      clean_root: [rootDir + '/*', '!' + rootDir + '_*'],
+      options: {
+        force: true
+      }
     },
     copy: {
       move_compiled: {
