@@ -47,7 +47,7 @@ module.exports = function(grunt) {
       harp_compile: 'harp compile ' + harpDir + ' ' + wwwDir
     },
     clean: {
-      clean_root: [rootDir + '/*', '!' + rootDir + '_*'],
+      clean_root: [rootDir + '/*', '!' + rootDir + '/_*'],
       options: {
         force: true
       }
