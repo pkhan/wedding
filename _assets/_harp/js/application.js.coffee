@@ -7,10 +7,10 @@ App.Templates = {}
 App.Routers = {}
 App.Collections = {}
 
-App.stuff = "thinga"
+App.stuff = "thingabbb"
 
 $(document).ready ->
-    window.modal = new App.Views.HeartBox()
+    # window.modal = new App.Views.HeartBox()
     # modal.render()
 
 # models
