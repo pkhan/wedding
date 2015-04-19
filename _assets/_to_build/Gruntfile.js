@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+  var harpDir = '../_harp';
+  var wwwDir = '../_www';
+  var rootDir = '../../'
 
   // Project configuration.
   grunt.initConfig({
@@ -39,7 +42,19 @@ module.exports = function(grunt) {
         files: ['app/00application.js.coffee', 'app/*/*'],
         tasks: 'concat'
       }
-    }
+    },
+    exec: {
+      harp_compile: 'harp compile ' + harpDir + ' ' wwwDir
+    },
+    clean: {
+      clean_root: [rootDir + '/*']
+    },
+    copy: {
+      move_compiled: {
+        src: wwwDir,
+        dest: rootDir
+      }
+    },
   });
 
   // Load the plugin that provides the "uglify" task.
@@ -49,6 +64,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task(s).
   grunt.registerTask('default', ['uglify']);
