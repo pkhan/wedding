@@ -44,10 +44,11 @@ module.exports = function(grunt) {
       }
     },
     exec: {
-      harp_compile: 'harp compile ' + harpDir + ' ' wwwDir
+      harp_compile: 'harp compile ' + harpDir + ' ' + wwwDir
     },
     clean: {
-      clean_root: [rootDir + '/*']
+      clean_root: [rootDir + '/*'],
+      force: true
     },
     copy: {
       move_compiled: {
