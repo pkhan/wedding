@@ -54,8 +54,9 @@ module.exports = function(grunt) {
     },
     copy: {
       move_compiled: {
-        src: wwwDir,
-        dest: rootDir
+        expand: true,
+        src: wwwDir + '/**',
+        dest: rootDir + '/'
       }
     },
   });
