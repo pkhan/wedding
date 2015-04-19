@@ -74,6 +74,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['uglify']);
-  grunt.registerTask('deploy', ['bower_concat', 'uglify', 'cssmin', 'concat']);
+  grunt.registerTask('deploy', ['bower_concat', 'uglify', 'cssmin', 'concat', 'exec', 'clean', 'copy']);
 
 };
