@@ -1,0 +1,246 @@
+#index-page {
+  @media (max-width: 768px) {
+    .picture-break {
+      min-height: 200px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .date-line {
+      margin-top: 190px;
+    }
+  }
+
+  .top-part {
+    font-family: 'Great Vibes', cursive;
+    background: url('/images/proposal.jpg');
+    -ms-behavior: url(/backgroundsize.min.htc);
+    background-size: cover;
+    background-position: 50% 56%;
+    color: #fff;
+    min-height: 400px;
+    text-shadow: #000 3px 0px 4px;
+    h1 {
+      font-size: 50px;
+      font-weight: 700;
+    }
+    .container {
+      padding: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .top-part h1 {
+      font-size: 40px;
+    }
+    .top-part .date-line {
+      margin-top: 50px;
+    }
+  }
+
+  .info-header {
+    color: #FFF;
+    background: #778EA4;
+  }
+
+  @media (max-width: 768px) {
+    .to-edge {
+      padding: 0;
+    }
+  }
+
+  .info-row {
+    .venue-type {
+      background: #778EA4;
+      margin: 0;
+      padding: 5px;
+      color: #FFF;
+    }
+  }
+
+  .middle-part {
+    background: #FFF;
+    h2 {
+      margin-top: 10px;
+    }
+  }
+
+  .picture-break {
+    background: url('/images/looking-right.jpg');
+  }
+
+  .bottom-part {
+    background: url('/images/proposal.jpg');
+    background-position: 50% 65%;
+    min-height: 300px;
+    background-size: 100%;
+  }
+
+  .nav-row {
+    height: 80px;
+  }
+
+  .hotel-name {
+    border-bottom: solid 3px #333;
+  }
+
+  .nav-bar {
+    line-height: 40px;
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+    .nav-item {
+      display: inline-block;
+      width: 33%;
+    }
+  }
+
+  .rsvp-row {
+    background-color: rgb(189, 189, 189);
+  }
+
+  .btn {
+    background: rgb(131, 3, 0);
+    box-shadow: rgb(71, 1, 0) 3px 3px 0px 3px;
+    color: #fff;
+    &:hover {
+      color: #fff;
+      background: rgb(110, 3, 0);
+    }
+    &:active {
+      color: #fff;
+    }
+    &:visited {
+      color: #fff;
+    }
+    font-size: 40px;
+    border-radius: 26px;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .center-margin {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .curtain {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .6;
+  }
+
+  .modal-outer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    // height: 100%;
+    width: 100%;
+    svg {
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      // width: 760px;
+    }
+    .modal-inner {
+      background-color: #fff;
+      float: none;
+      padding: 20px;
+      margin-top: 61px;
+      width: 250px;
+    }
+  }
+
+  #rsvp-form {
+    text-align: left;
+  }
+
+  .heart-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  span.no-wrap {
+    white-space: nowrap;
+  }
+
+  .the-map {
+    width: 100%;
+    height: 100%;
+  }
+
+  .where-to-stay {
+    padding-bottom: 20px;
+  }
+
+  .block-days {
+    font-size: 0;
+    .block-day {
+      font-size: 14px;
+      display: inline-block;
+      border-right: solid 1px #000;
+      // padding: 0 10px;
+      width: 65px;
+      &:last-child{
+        margin-right: 0;
+        border-right: none;
+      }
+    }
+  }
+
+  .hotel-info {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    // &:hover {
+    //   border: solid 1px #778EA4;
+    //   padding-top: 0;
+    //   padding-bottom: 0;
+    //   padding-left: 14px;
+    //   padding-right: 14px;
+    // }
+  }
+
+  .registry {
+    .row {
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+  }
+
+  .map-outer {
+    position: relative;
+    height: 500px;
+    .grab-bar {
+      position: absolute;
+      top: 0;
+      width: 25%;
+      bottom: 0;
+      &.left-grab {
+        left: 0;
+        // top: 80px;
+      }
+      &.right-grab {
+        right: 0;
+        // top: 30px;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .map-outer {
+      height: 400px;
+    }
+  }
+
+}
