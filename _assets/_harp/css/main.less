@@ -3,13 +3,33 @@ body {
 }
 
 @import "_index.less";
+@import "_story.less";
 
 .outer-row {
   background: #FFF;
   color: #333;
+  width: 100%;
   &.alt-background {
     background: #778EA4;
     color: #FFF;
+  }
+}
+
+.top-part {
+  font-family: 'Great Vibes', cursive;
+  -ms-behavior: url(/backgroundsize.min.htc);
+  background: url('/images/proposal.jpg');
+  background-size: cover;
+  background-position: 50% 56%;
+  color: #fff;
+  min-height: 400px;
+  text-shadow: #000 3px 0px 4px;
+  h1 {
+    font-size: 50px;
+    font-weight: 700;
+  }
+  .container {
+    padding: 30px;
   }
 }
 
@@ -19,4 +39,13 @@ body {
   -ms-behavior: url(/backgroundsize.min.htc);
   background-size: cover;
   background-position: 0 25%;
+}
+
+.centered {
+  text-align: center;
+}
+
+.center-margin {
+  margin-left: auto;
+  margin-right: auto;
 }
