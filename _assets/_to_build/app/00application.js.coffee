@@ -7,8 +7,6 @@ App.Templates = {}
 App.Routers = {}
 App.Collections = {}
 
-App.stuff = "thingabbb"
-
 $(document).ready ->
-    # window.modal = new App.Views.HeartBox()
-    # modal.render()
+    if $('#story-page').length > 0
+        App.headerView = new App.Views.StoryHeader
