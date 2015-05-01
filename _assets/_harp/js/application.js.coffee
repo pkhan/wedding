@@ -1,16 +1,3 @@
-
-App = window.WeddingApp = {}
-
-App.Views = {}
-App.Models = {}
-App.Templates = {}
-App.Routers = {}
-App.Collections = {}
-
-$(document).ready ->
-    if $('#story-page').length > 0
-        App.headerView = new App.Views.StoryHeader
-
 # Simple jQuery function to make hearts suddenly fly up and across an el
 
 makeLayer = (heartHeight) ->
@@ -54,8 +41,58 @@ $.fn.animateHearts = (numLayers=3, totalDuration=2000, heightScale=2, scale=20, 
         delay += delayIncrease
 
 
+
+App = window.WeddingApp = {}
+
+App.Views = {}
+App.Models = {}
+App.Templates = {}
+App.Routers = {}
+App.Collections = {}
+
+$(document).ready ->
+    App.appView = new Backbone.View
+        el: '.body'
+    Backbone.history.start(pushState: true)
+
+class App.Router extends Backbone.Router
+    routes:
+        ''         : 'home'
+        '/'        : 'home'
+        '/rsvp'    : 'rsvp'
+        '/story'   : 'story'
+        '/where'   : 'where'
+        '/registry': 'registry'
+    home: ->
+        homeView = new App.Views.Home()
+
+App.router = new App.Router
+
 # models
 # collections
+
+class App.Views.Home extends Backbone.View
+    el: '#index-page'
+    events:
+        'click #rsvp' : 'rsvp'
+
+    initialize: (showRsvp = false) ->
+        @showRsvp() if showRsvp
+        @rsvpModal = new App.Views.RsvpModal()
+        @$blanket = $('.blanket')
+
+    rsvp: (evt) ->
+        evt.preventDefault()
+        @showRsvp()
+
+    showRsvp: ->
+        @$blanket.fadeIn(=>
+            @$blanket.animateHearts(3, 2000, 2, 40, 300)
+            setTimeout( =>
+                @rsvpModal.slideUp(@$blanket, 1000)
+            , 600)
+        )
+
 # VIEWS
 # App = window.WeddingApp
 
@@ -122,6 +159,22 @@ App.Views.HeartBox = Backbone.View.extend
 
         @poly.plot(polyString)
 
+
+class App.Views.RsvpModal extends Backbone.View
+    el: '#rsvp-modal'
+    events: 
+        'click .close': 'close'
+
+    show: ->
+        @$el.show()
+
+    slideUp: ($againstEl, duration=1000) ->
+        @$el.css(
+            top: $againstEl.height()
+        ).show().animate(
+            { top: 0 },
+            duration: duration
+        )
 
 # VIEWS
 # App = window.WeddingApp

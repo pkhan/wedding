@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     },
     concat: {
       app: {
-        src: ['app/00application.js.coffee', 'app/*/*'],
+        src: ['app/00utils/*', 'app/00application.js.coffee', 'app/*/*'],
         dest: '../_harp/js/application.js.coffee'
       }
     },

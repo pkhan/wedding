@@ -8,5 +8,19 @@ App.Routers = {}
 App.Collections = {}
 
 $(document).ready ->
-    if $('#story-page').length > 0
-        App.headerView = new App.Views.StoryHeader
+    App.appView = new Backbone.View
+        el: '.body'
+    Backbone.history.start(pushState: true)
+
+class App.Router extends Backbone.Router
+    routes:
+        ''         : 'home'
+        '/'        : 'home'
+        '/rsvp'    : 'rsvp'
+        '/story'   : 'story'
+        '/where'   : 'where'
+        '/registry': 'registry'
+    home: ->
+        homeView = new App.Views.Home()
+
+App.router = new App.Router
