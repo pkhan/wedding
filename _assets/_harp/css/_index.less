@@ -89,6 +89,16 @@
     padding: 20px;
   }
 
+  .rsvp-form {
+    margin: 20px 0;
+  }
+
+  #rsvp {
+    font-size: 40px;
+    padding: 10px 30px;
+    border-radius: 26px;
+  }
+
   .btn {
     background: rgb(131, 3, 0);
     box-shadow: rgb(71, 1, 0) 3px 3px 0px 3px;
@@ -103,9 +113,10 @@
     &:visited {
       color: #fff;
     }
-    font-size: 40px;
-    border-radius: 26px;
-    padding: 10px 30px;
+    &[disabled] {
+      background: rgb(100, 100, 100);
+      box-shadow: rgb(71, 71, 71) 3px 3px 0px 3px;
+    }  
   }
 
   .curtain {
@@ -118,26 +129,16 @@
     opacity: .6;
   }
 
-  .modal-outer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    // height: 100%;
-    width: 100%;
-    svg {
-      // position: absolute;
-      // top: 0;
-      // left: 0;
-      // width: 760px;
+  .modal {
+    .modal-dialog {
+      height: 95%;
+      
+      .modal-content {
+        height: 95%;
+        overflow: scroll;
+      }
     }
-    .modal-inner {
-      background-color: #fff;
-      float: none;
-      padding: 20px;
-      margin-top: 61px;
-      width: 250px;
-    }
+
   }
 
   #rsvp-form {

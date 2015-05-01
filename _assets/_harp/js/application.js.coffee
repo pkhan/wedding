@@ -58,10 +58,10 @@ class App.Router extends Backbone.Router
     routes:
         ''         : 'home'
         '/'        : 'home'
-        '/rsvp'    : 'home'
-        '/story'   : 'story'
-        '/where'   : 'where'
-        '/registry': 'registry'
+        'rsvp'     : 'home'
+        'story'    : 'story'
+        'where'    : 'where'
+        'registry' : 'registry'
     home: ->
         homeView = new App.Views.Home()
 

@@ -179,8 +179,34 @@
                 .modal-body
                     button.close
                         span x
-                    p hi there
-                    p what's up
+                    form.rsvp-form
+                        .form-group.form-group-lg
+                            label(for="party-name") Your name(s)
+                            input#party-name.form-control(type="text", name="name")
+                        .form-group.form-group-lg
+                            label(for="party-size") Your group size
+                            input#party-size.form-control(type="number", min=1, inputmode="numeric", name="size")
+                        .form-group
+                            .radio.input-lg
+                                label
+                                    input(type="radio", name="attendance", value="yes")
+                                    span Will be attending
+                            .radio.input-lg
+                                label
+                                    input(type="radio", name="attendance", value="no")
+                                    span Will not be attending
+                        hr
+                        h3 Menu
+                        .menu-portion
+                            .form-group.form-group-lg
+                                label(for="menu-entree") Entree
+                                select.form-control#menu-entree
+                                    option(value="beef") Beef short rib
+                                    option(value="chicken") Chicken Piccata
+                                    option(value="veggie") Vegetarian Lasagna
+
+                        .form-group.form-group-lg
+                            input.btn.btn-lg(type="submit", disabled) Submit
 
     //- .outer-row.registry.alt-background
     //-     .container.centered
