@@ -26,11 +26,11 @@ class App.Views.StoryHeader extends Backbone.View
         for layer in @$layers
             $layer = $(layer)
             @animateLayer $layer, delay
-            delay += 100
+            delay += 300
 
     animateLayer: ($layer, delay)->
         height = @height + 100
-        duration = 2000 - (delay * 2)
+        duration = 2000 - (delay)
         console.log duration
         console.log "hey"
         setTimeout( =>
