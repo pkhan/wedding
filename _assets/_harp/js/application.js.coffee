@@ -11,7 +11,6 @@ makeLayer = (heartHeight) ->
 
 animateLayer = (layer, delay) ->
     duration = 2000 - (delay)
-    console.log duration
     setTimeout( ->
         layer.$el.animate(
             { "top" : "-#{layer.height}px" },
@@ -59,7 +58,7 @@ class App.Router extends Backbone.Router
     routes:
         ''         : 'home'
         '/'        : 'home'
-        '/rsvp'    : 'rsvp'
+        '/rsvp'    : 'home'
         '/story'   : 'story'
         '/where'   : 'where'
         '/registry': 'registry'
@@ -75,11 +74,15 @@ class App.Views.Home extends Backbone.View
     el: '#index-page'
     events:
         'click #rsvp' : 'rsvp'
+        'click .blanket': 'close'
 
     initialize: (showRsvp = false) ->
         @showRsvp() if showRsvp
         @rsvpModal = new App.Views.RsvpModal()
-        @$blanket = $('.blanket')
+        @listenTo(@rsvpModal, 'close', ->
+            @close()
+        )
+        @$blanket = @$('.blanket')
 
     rsvp: (evt) ->
         evt.preventDefault()
@@ -92,6 +95,9 @@ class App.Views.Home extends Backbone.View
                 @rsvpModal.slideUp(@$blanket, 1000)
             , 600)
         )
+
+    close: ->
+        @$blanket.fadeOut()
 
 # VIEWS
 # App = window.WeddingApp
@@ -163,10 +169,21 @@ App.Views.HeartBox = Backbone.View.extend
 class App.Views.RsvpModal extends Backbone.View
     el: '#rsvp-modal'
     events: 
-        'click .close': 'close'
+        'click .close': 'fadeOut'
+        'click' : 'outerClick'
+        'click .modal-dialog': 'innerClick'
+
+    clickedInside: false
 
     show: ->
         @$el.show()
+
+    hide: ->
+        @$el.hide()
+        @afterClose()
+
+    afterClose: ->
+        @trigger('close')
 
     slideUp: ($againstEl, duration=1000) ->
         @$el.css(
@@ -175,6 +192,17 @@ class App.Views.RsvpModal extends Backbone.View
             { top: 0 },
             duration: duration
         )
+
+    fadeOut: ->
+        @$el.fadeOut()
+        @afterClose()
+
+    innerClick: ->
+        @clickedInside = true
+
+    outerClick: ->
+        @fadeOut() unless @clickedInside
+        @clickedInside = false
 
 # VIEWS
 # App = window.WeddingApp

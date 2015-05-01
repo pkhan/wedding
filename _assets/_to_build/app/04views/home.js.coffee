@@ -3,11 +3,15 @@ class App.Views.Home extends Backbone.View
     el: '#index-page'
     events:
         'click #rsvp' : 'rsvp'
+        'click .blanket': 'close'
 
     initialize: (showRsvp = false) ->
         @showRsvp() if showRsvp
         @rsvpModal = new App.Views.RsvpModal()
-        @$blanket = $('.blanket')
+        @listenTo(@rsvpModal, 'close', ->
+            @close()
+        )
+        @$blanket = @$('.blanket')
 
     rsvp: (evt) ->
         evt.preventDefault()
@@ -20,3 +24,6 @@ class App.Views.Home extends Backbone.View
                 @rsvpModal.slideUp(@$blanket, 1000)
             , 600)
         )
+
+    close: ->
+        @$blanket.fadeOut()

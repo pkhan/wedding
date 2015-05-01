@@ -11,7 +11,6 @@ makeLayer = (heartHeight) ->
 
 animateLayer = (layer, delay) ->
     duration = 2000 - (delay)
-    console.log duration
     setTimeout( ->
         layer.$el.animate(
             { "top" : "-#{layer.height}px" },

@@ -16,7 +16,7 @@ class App.Router extends Backbone.Router
     routes:
         ''         : 'home'
         '/'        : 'home'
-        '/rsvp'    : 'rsvp'
+        '/rsvp'    : 'home'
         '/story'   : 'story'
         '/where'   : 'where'
         '/registry': 'registry'
