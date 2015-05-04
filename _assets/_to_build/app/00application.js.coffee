@@ -9,18 +9,20 @@ App.Collections = {}
 
 $(document).ready ->
     App.appView = new Backbone.View
-        el: '.body'
+        el: 'body'
     Backbone.history.start(pushState: true)
 
 class App.Router extends Backbone.Router
     routes:
         ''         : 'home'
         '/'        : 'home'
-        'rsvp'     : 'home'
+        'rsvp'     : 'rsvp'
         'story'    : 'story'
         'where'    : 'where'
         'registry' : 'registry'
     home: ->
         homeView = new App.Views.Home()
+    rsvp: ->
+        homeView = new App.Views.Home(true)
 
 App.router = new App.Router

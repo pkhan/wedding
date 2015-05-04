@@ -51,19 +51,21 @@ App.Collections = {}
 
 $(document).ready ->
     App.appView = new Backbone.View
-        el: '.body'
+        el: 'body'
     Backbone.history.start(pushState: true)
 
 class App.Router extends Backbone.Router
     routes:
         ''         : 'home'
         '/'        : 'home'
-        'rsvp'     : 'home'
+        'rsvp'     : 'rsvp'
         'story'    : 'story'
         'where'    : 'where'
         'registry' : 'registry'
     home: ->
         homeView = new App.Views.Home()
+    rsvp: ->
+        homeView = new App.Views.Home(true)
 
 App.router = new App.Router
 
@@ -77,7 +79,7 @@ class App.Views.Home extends Backbone.View
         'click .blanket': 'close'
 
     initialize: (showRsvp = false) ->
-        @showRsvp() if showRsvp
+        @disableScroll() if showRsvp
         @rsvpModal = new App.Views.RsvpModal()
         @listenTo(@rsvpModal, 'close', ->
             @close()
@@ -95,9 +97,17 @@ class App.Views.Home extends Backbone.View
                 @rsvpModal.slideUp(@$blanket, 1000)
             , 600)
         )
+        @disableScroll()
 
     close: ->
         @$blanket.fadeOut()
+        @enableScroll()
+
+    enableScroll: ->
+        $('body').removeClass('no-scroll')
+
+    disableScroll: -> 
+        $('body').addClass('no-scroll')
 
 # VIEWS
 # App = window.WeddingApp
@@ -166,14 +176,51 @@ App.Views.HeartBox = Backbone.View.extend
         @poly.plot(polyString)
 
 
+personSection = _.template("""
+    <div class="guest-group">
+        <h3>Guest #<%= num %></h3>
+        <div class="form-group form-group-lg">
+            <label for="person-name-<%= num %>">Guest Name</label>
+            <input type="text" class="form-control person-name" id="person-name-<%= num %>">
+        </div>
+        <div class="form-group">
+            <div class="radio input-lg">
+                <label>
+                    <input type="radio" name="attendance" value="yes">
+                    <span>Will be attending</span>
+                </label>
+            </div>
+            <div class="radio input-lg">
+                <label>
+                    <input type="radio" name="attendance" value="no">
+                    <span>Will not be attending</span>
+                </label>
+            </div>
+            <div class="form-group form-group-lg">
+                <label for="entree-{{num}}">Entree</label>
+                <select id="entree-{{num}}" name="entree" class="form-control">
+                    <option value="beef">Beef short rib</option>
+                    <option value="chicken">Chicken piccata</option>
+                    <option value="veggie">Vegetarian</option>
+                </select>
+            </div>
+        </div>
+    </div>
+""")
+
 class App.Views.RsvpModal extends Backbone.View
     el: '#rsvp-modal'
     events: 
         'click .close': 'fadeOut'
         'click' : 'outerClick'
         'click .modal-dialog': 'innerClick'
+        'click #update-guest': 'updateGuests'
+        'input .person-name': 'updateName'
 
     clickedInside: false
+
+    initialize: ->
+        @$guestSection = @$('.guest-section')
 
     show: ->
         @$el.show()
@@ -203,6 +250,36 @@ class App.Views.RsvpModal extends Backbone.View
     outerClick: ->
         @fadeOut() unless @clickedInside
         @clickedInside = false
+        true
+
+    updateGuests: ->
+        @$guestSection.css
+            opacity: 0
+            display: 'none'
+        numGuests = Number(@$el.find('#party-size').val())
+        if numGuests == NaN or numGuests < 1
+            return
+
+        guestsHtml = ""
+
+        for guestNum in [1..numGuests]
+            guestsHtml += personSection(num: guestNum)
+
+        @$guestSection
+            .html(guestsHtml)
+            .slideDown(1000)
+            .animate(
+                { opacity: 1 },
+                complete: =>
+                    @$('.modal-content').animate
+                        scrollTop: "#{(@$guestSection.position().top)}px"
+            )
+
+    updateName: (evt)->
+        $target = $(evt.target)
+        $group = $target.parentsUntil('.guest-section').last()
+        name = $target.val()
+        $group.find('h3').text(name)
 
 # VIEWS
 # App = window.WeddingApp

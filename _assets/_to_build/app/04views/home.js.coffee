@@ -6,7 +6,7 @@ class App.Views.Home extends Backbone.View
         'click .blanket': 'close'
 
     initialize: (showRsvp = false) ->
-        @showRsvp() if showRsvp
+        @disableScroll() if showRsvp
         @rsvpModal = new App.Views.RsvpModal()
         @listenTo(@rsvpModal, 'close', ->
             @close()
@@ -24,6 +24,14 @@ class App.Views.Home extends Backbone.View
                 @rsvpModal.slideUp(@$blanket, 1000)
             , 600)
         )
+        @disableScroll()
 
     close: ->
         @$blanket.fadeOut()
+        @enableScroll()
+
+    enableScroll: ->
+        $('body').removeClass('no-scroll')
+
+    disableScroll: -> 
+        $('body').addClass('no-scroll')

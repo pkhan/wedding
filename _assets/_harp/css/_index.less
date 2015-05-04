@@ -131,18 +131,29 @@
 
   .modal {
     .modal-dialog {
-      height: 95%;
-      
+      height: 100%;
       .modal-content {
-        height: 95%;
+        max-height: 85%;
         overflow: scroll;
       }
     }
 
   }
 
-  #rsvp-form {
+  .rsvp-form {
     text-align: left;
+
+    .guest-section {
+      opacity: 0;
+      display: none;
+    }
+
+    .guest-group {
+      padding-left: 15px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border-left: 1px solid #CCC;
+    }
   }
 
   .heart-box {
