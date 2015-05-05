@@ -186,19 +186,19 @@ personSection = _.template("""
         <div class="form-group">
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" name="attendance" value="yes">
+                    <input type="radio" name="attendance-<%= num %>" value="yes">
                     <span>Will be attending</span>
                 </label>
             </div>
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" name="attendance" value="no">
+                    <input type="radio" name="attendance-<%= num %>" value="no">
                     <span>Will not be attending</span>
                 </label>
             </div>
             <div class="form-group form-group-lg">
-                <label for="entree-{{num}}">Entree</label>
-                <select id="entree-{{num}}" name="entree" class="form-control">
+                <label for="entree-<%= num %>">Entree</label>
+                <select id="entree-<%= num %>" name="entree" class="form-control">
                     <option value="beef">Beef short rib</option>
                     <option value="chicken">Chicken piccata</option>
                     <option value="veggie">Vegetarian</option>
