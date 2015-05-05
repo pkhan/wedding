@@ -79,12 +79,14 @@ class App.Views.Home extends Backbone.View
         'click .blanket': 'close'
 
     initialize: (showRsvp = false) ->
-        @disableScroll() if showRsvp
         @rsvpModal = new App.Views.RsvpModal()
         @listenTo(@rsvpModal, 'close', ->
             @close()
         )
         @$blanket = @$('.blanket')
+        if showRsvp
+            @disableScroll()
+            @rsvpModal.$('input').first().focus()
 
     rsvp: (evt) ->
         evt.preventDefault()
@@ -183,20 +185,20 @@ personSection = _.template("""
             <label for="person-name-<%= num %>">Guest Name</label>
             <input type="text" class="form-control person-name" id="person-name-<%= num %>">
         </div>
-        <div class="form-group">
+        <div class="form-group attendance-group">
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" name="attendance-<%= num %>" value="yes">
+                    <input type="radio" class="attendance attendance-yes" name="attendance-<%= num %>" value="yes">
                     <span>Will be attending</span>
                 </label>
             </div>
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" name="attendance-<%= num %>" value="no">
+                    <input type="radio" class="attendance attendance-no" name="attendance-<%= num %>" value="no">
                     <span>Will not be attending</span>
                 </label>
             </div>
-            <div class="form-group form-group-lg">
+            <div class="form-group form-group-lg meal-group">
                 <label for="entree-<%= num %>">Entree</label>
                 <select id="entree-<%= num %>" name="entree" class="form-control">
                     <option value="beef">Beef short rib</option>
@@ -216,11 +218,25 @@ class App.Views.RsvpModal extends Backbone.View
         'click .modal-dialog': 'innerClick'
         'click #update-guest': 'updateGuests'
         'input .person-name': 'updateName'
+        'change .attendance': 'handleAttendance'
 
     clickedInside: false
 
     initialize: ->
         @$guestSection = @$('.guest-section')
+        @$form = @$('.rsvp-form')
+        _this = @
+        @$form.validate
+            errorPlacement: () ->
+            showErrors: () ->
+                @defaultShowErrors()
+                _this.floatErrors()
+
+    floatErrors: () ->
+        $inputs = @$('.form-group')
+        $inputs.removeClass('has-success').removeClass('has-error')
+        $inputs.has('.error').addClass('has-error')
+        $inputs.has('.valid').addClass('has-success')
 
     show: ->
         @$el.show()
@@ -238,6 +254,8 @@ class App.Views.RsvpModal extends Backbone.View
         ).show().animate(
             { top: 0 },
             duration: duration
+            complete: () =>
+                @$('input').first().focus()
         )
 
     fadeOut: ->
@@ -251,6 +269,14 @@ class App.Views.RsvpModal extends Backbone.View
         @fadeOut() unless @clickedInside
         @clickedInside = false
         true
+
+    handleAttendance: (evt) ->
+        $target = $(evt.target)
+        $group = $target.parentsUntil('.guest-section').last()
+        if $group.find('.attendance-no').prop('checked')
+            $group.find('.meal-group').slideUp()
+        else
+            $group.find('.meal-group').slideDown()
 
     updateGuests: ->
         @$guestSection.css

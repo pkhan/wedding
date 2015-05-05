@@ -180,40 +180,29 @@
                     button.close
                         span x
                     form.rsvp-form
-                        .form-group.form-group-lg
-                            label(for="party-name") Your group name
-                            input#party-name.form-control(type="text", name="partyname", placeholder="The Belcher Family")
-                        .form-group.form-group-lg
-                            label(for="party-email") Your email (optional, for updates)
+                        .form-group.form-group-lg.has-feedback
+                            label.control-label(for="party-name") Your group name
+                            input#party-name.form-control(type="text", name="partyname", placeholder="The Belcher Family", required, minlength=1)
+                            span.glyphicon.glyphicon-ok.form-control-feedback 
+                            span.glyphicon.glyphicon-remove.form-control-feedback 
+                        .form-group.form-group-lg.has-feedback
+                            label.control-label(for="party-email") Your email (optional, for updates)
                             input#party-email.form-control(type="email", name="partyemail", placeholder="burgerbob@aol.com")
-                        .form-group.form-group-lg
-                            label(for="party-size") Your group size (also include those not attending)
-                            input#party-size.form-control(type="number", min=1, max=7, inputmode="numeric", name="size", )
+                            span.glyphicon.glyphicon-ok.form-control-feedback 
+                            span.glyphicon.glyphicon-remove.form-control-feedback 
+                        .form-group.form-group-lg.has-feedback
+                            label.control-label(for="party-size") Your group size (also include those not attending)
+                            input#party-size.form-control(type="number", min=1, max=7, inputmode="numeric", name="size", required)
+                            span.glyphicon.glyphicon-ok.form-control-feedback 
+                            span.glyphicon.glyphicon-remove.form-control-feedback 
                         .form-group.form-group-lg
                             button#update-guest.btn.btn-lg(type="button") Update Guest Count
 
                         .guest-section
-                        
-                        //- .guest-group
-                        //-     h3 Guest #1
-                        //-     .form-group.form-group-lg
-                        //-         label(for="person-name-1") Guest #1 Name
-                        //-         input#person-name-1.form-control(type="text", name="partyname", , placeholder="Tom Cruise and Friends")
-                        //-     .form-group
-                        //-         .radio.input-lg
-                        //-             label
-                        //-                 input(type="radio", name="attendance", value="yes", tabindex=12)
-                        //-                 span Will be attending
-                        //-         .radio.input-lg
-                        //-             label
-                        //-                 input(type="radio", name="attendance", value="no")
-                        //-                 span Will not be attending
-                        //-     .form-group.form-group-lg
-                        //-         label(for="menu-entree") Entree
-                        //-         select.form-control#menu-entree(name="entree", tabindex=13)
-                        //-             option(value="beef") Beef short rib
-                        //-             option(value="chicken") Chicken Piccata
-                        //-             option(value="veggie") Vegetarian Lasagna
+
+                        .form-group.form-group-lg
+                            label.control-label(for="song-input") Recommend a song for the reception
+                            input#song-input.form-control(type="text", placeholder="Uptown Funk", name="songinput")
 
                         .form-group.form-group-lg
                             input.btn.btn-lg(type="submit", disabled) Submit

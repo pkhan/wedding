@@ -72,6 +72,19 @@ body {
   background-position: 0 25%;
 }
 
+.form-group {
+  span.form-control-feedback {
+    display: none;
+    top: 30px;
+  }
+  &.has-success span.form-control-feedback.glyphicon-ok {
+    display: inline;
+  }
+  &.has-error span.form-control-feedback.glyphicon-remove {
+    display: inline;
+  }
+}
+
 .centered {
   text-align: center;
 }

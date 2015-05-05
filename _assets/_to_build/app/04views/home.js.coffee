@@ -6,12 +6,14 @@ class App.Views.Home extends Backbone.View
         'click .blanket': 'close'
 
     initialize: (showRsvp = false) ->
-        @disableScroll() if showRsvp
         @rsvpModal = new App.Views.RsvpModal()
         @listenTo(@rsvpModal, 'close', ->
             @close()
         )
         @$blanket = @$('.blanket')
+        if showRsvp
+            @disableScroll()
+            @rsvpModal.$('input').first().focus()
 
     rsvp: (evt) ->
         evt.preventDefault()

@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         dest: 'build/vendor.js',
         cssDest: 'build/vendor.css',
         dependencies: {
+          'jquery-validation' : 'jquery',
           'backbone': ['underscore', 'jquery'],
           'bootstrap': 'jquery'
         },
