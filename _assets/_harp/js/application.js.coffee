@@ -70,6 +70,62 @@ class App.Router extends Backbone.Router
 App.router = new App.Router
 
 # models
+
+App = window.WeddingApp
+
+class App.Models.Rsvp extends Backbone.Model
+    urlRoot: "https://docs.google.com/forms/d/1gQH7_e0hBzf6bHLyXt04qCsdCmLB1FlhrXfusFXwUIM/formResponse"
+
+    initialize: ->
+        @mapAndSet _.extend(@toJSON(), domain: window.location.host)
+
+    mappings: 
+        groupName: 'entry.183949306'
+        groupSize: 'entry.1718135727'
+        guestName: 'entry.1671140108'
+        guestAttendance: 'entry.83143551'
+        guestMeal: 'entry.763928453'
+        groupSong: 'entry.2036395429'
+        groupEmail: 'entry.1033845525'
+        domain:     'entry.739322273'
+
+    mapAndSet: (obj) ->
+        result = {}
+        for key, val of obj
+            newKey = @mappings[key]
+            result[newKey] = val
+        @set(result)
+
+    save: ->
+        $iframe = $('<iframe></iframe>')
+        $iframe.addClass 'hidden'
+        $iframe.on('ready', ->
+            console.log "ready"
+        )
+        $iframe.attr(
+            id: @cid,
+            name: @cid
+        )
+        $('body').append($iframe)
+
+        $form = $('<form></form>')
+        $form.attr(
+            action: @urlRoot
+            method: "POST"
+            target: @cid
+        )
+        for key, val of @toJSON()
+            $input = $("<input></input>")
+            $input.attr(
+                type: "hidden"
+                value: val
+                name: key
+            )
+            $form.append($input)
+        $('body').append($form)
+        $form.submit()
+        $form.remove()
+
 # collections
 
 class App.Views.Home extends Backbone.View
@@ -183,26 +239,26 @@ personSection = _.template("""
         <h3>Guest #<%= num %></h3>
         <div class="form-group form-group-lg has-feedback">
             <label for="person-name-<%= num %>">Guest Name</label>
-            <input type="text" class="form-control person-name" id="person-name-<%= num %>" required="required" minlength=1 name="peronname-<%= num %>">
+            <input type="text" class="form-control person-name" id="person-name-<%= num %>" required="required" minlength=1 name="guestName-<%= num %>">
             <span class="glyphicon glyphicon-ok form-control-feedback"> </span> 
             <span class="glyphicon glyphicon-remove form-control-feedback"> </span> 
         </div>
         <div class="form-group attendance-group">
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" class="attendance attendance-yes" name="attendance-<%= num %>" value="yes" required="required">
+                    <input type="radio" class="attendance attendance-yes" name="guestAttendance-<%= num %>" value="yes" required="required">
                     <span>Will be attending</span>
                 </label>
             </div>
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" class="attendance attendance-no" name="attendance-<%= num %>" value="no" required="required">
+                    <input type="radio" class="attendance attendance-no" name="guestAttendance-<%= num %>" value="no" required="required">
                     <span>Will not be attending</span>
                 </label>
             </div>
             <div class="form-group form-group-lg meal-group">
                 <label for="entree-<%= num %>">Entree</label>
-                <select id="entree-<%= num %>" name="entree-<%= num %>" class="form-control">
+                <select id="entree-<%= num %>" name="guestMeal-<%= num %>" class="form-control">
                     <option value="beef">Beef short rib</option>
                     <option value="chicken">Chicken piccata</option>
                     <option value="veggie">Vegetarian</option>
@@ -232,7 +288,7 @@ class App.Views.RsvpModal extends Backbone.View
         _this = @
         @$form.validate
             errorPlacement: () ->
-            submitHandler: () =>
+            submitHandler: (form) =>
                 @ajaxSubmit()
             showErrors: (errorMap, errorList) ->
                 @defaultShowErrors()
@@ -295,7 +351,31 @@ class App.Views.RsvpModal extends Backbone.View
         evt.preventDefault()
 
     ajaxSubmit: (form) ->
-        window.form = @$form.serializeArray()
+        formData = @$form.serializeArray()
+        groupData = {}
+        guestData = {} 
+        models = []
+        for input in formData
+            key = input.name
+            val = input.value
+            keyParts = key.split '-'
+            name = keyParts[0]
+            num = keyParts[1]
+
+            if num
+                # is a guest input
+                guestData[num] ||= {}
+                guestData[num][name] = val
+            else
+                groupData[key] = val
+
+        models = for num, guest of guestData
+            model = new App.Models.Rsvp()
+            model.mapAndSet(_.extend(guest, groupData))
+            model.save()
+            model
+
+        window.models = models
 
     updateGuests: ->
         @$guestSection.css
