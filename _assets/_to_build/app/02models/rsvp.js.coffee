@@ -28,9 +28,6 @@ class App.Models.Rsvp extends Backbone.Model
     save: ->
         $iframe = $('<iframe></iframe>')
         $iframe.addClass 'hidden'
-        $iframe.on('ready', ->
-            console.log "ready"
-        )
         $iframe.attr(
             id: @cid,
             name: @cid
@@ -52,5 +49,8 @@ class App.Models.Rsvp extends Backbone.Model
             )
             $form.append($input)
         $('body').append($form)
+        $iframe.on('load', ->
+            console.log "ready"
+        )
         $form.submit()
         $form.remove()

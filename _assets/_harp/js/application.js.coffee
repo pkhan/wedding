@@ -99,9 +99,6 @@ class App.Models.Rsvp extends Backbone.Model
     save: ->
         $iframe = $('<iframe></iframe>')
         $iframe.addClass 'hidden'
-        $iframe.on('ready', ->
-            console.log "ready"
-        )
         $iframe.attr(
             id: @cid,
             name: @cid
@@ -123,6 +120,9 @@ class App.Models.Rsvp extends Backbone.Model
             )
             $form.append($input)
         $('body').append($form)
+        $iframe.on('load', ->
+            console.log "ready"
+        )
         $form.submit()
         $form.remove()
 
@@ -283,6 +283,7 @@ class App.Views.RsvpModal extends Backbone.View
     showingGuests: false
 
     initialize: ->
+        window.modal = @
         @$guestSection = @$('.guest-section')
         @$form = @$('.rsvp-form')
         _this = @
@@ -318,6 +319,8 @@ class App.Views.RsvpModal extends Backbone.View
         @trigger('close')
 
     slideUp: ($againstEl, duration=1000) ->
+        @$('.success-message').addClass('hidden')
+        @$('.rsvp-form').show()
         @$el.css(
             top: $againstEl.height()
         ).show().animate(
@@ -375,7 +378,7 @@ class App.Views.RsvpModal extends Backbone.View
             model.save()
             model
 
-        window.models = models
+        @showSuccess()
 
     updateGuests: ->
         @$guestSection.css
@@ -408,6 +411,10 @@ class App.Views.RsvpModal extends Backbone.View
         $group = $target.parentsUntil('.guest-section').last()
         name = $target.val()
         $group.find('h3').text(name)
+
+    showSuccess: ->
+        @$form.slideUp()
+        @$('.success-message').removeClass('hidden').animate(opacity:1)
 
 # VIEWS
 # App = window.WeddingApp
