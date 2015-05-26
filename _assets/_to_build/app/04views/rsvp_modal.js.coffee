@@ -1,9 +1,11 @@
 personSection = _.template("""
     <div class="guest-group">
         <h3>Guest #<%= num %></h3>
-        <div class="form-group form-group-lg">
+        <div class="form-group form-group-lg has-feedback">
             <label for="person-name-<%= num %>">Guest Name</label>
-            <input type="text" class="form-control person-name" id="person-name-<%= num %>" required="required">
+            <input type="text" class="form-control person-name" id="person-name-<%= num %>" required="required" minlength=1 name="peronname-<%= num %>">
+            <span class="glyphicon glyphicon-ok form-control-feedback"> </span> 
+            <span class="glyphicon glyphicon-remove form-control-feedback"> </span> 
         </div>
         <div class="form-group attendance-group">
             <div class="radio input-lg">
@@ -20,7 +22,7 @@ personSection = _.template("""
             </div>
             <div class="form-group form-group-lg meal-group">
                 <label for="entree-<%= num %>">Entree</label>
-                <select id="entree-<%= num %>" name="entree" class="form-control">
+                <select id="entree-<%= num %>" name="entree-<%= num %>" class="form-control">
                     <option value="beef">Beef short rib</option>
                     <option value="chicken">Chicken piccata</option>
                     <option value="veggie">Vegetarian</option>
@@ -42,6 +44,7 @@ class App.Views.RsvpModal extends Backbone.View
         'submit .rsvp-form': 'handleSubmit'
 
     clickedInside: false
+    showingGuests: false
 
     initialize: ->
         @$guestSection = @$('.guest-section')
@@ -49,15 +52,24 @@ class App.Views.RsvpModal extends Backbone.View
         _this = @
         @$form.validate
             errorPlacement: () ->
-            showErrors: () ->
+            submitHandler: () =>
+                @ajaxSubmit()
+            showErrors: (errorMap, errorList) ->
                 @defaultShowErrors()
                 _this.floatErrors()
+                _this.enableIfReady(errorList)
 
     floatErrors: () ->
         $inputs = @$('.form-group')
         $inputs.removeClass('has-success').removeClass('has-error')
         $inputs.has('.error').addClass('has-error')
         $inputs.has('.valid').addClass('has-success')
+
+    enableIfReady: (errorList) ->
+        if @showingGuests and errorList.length == 0
+            @$('#rsvp-submit').removeAttr('disabled')
+        else
+            @$('#rsvp-submit').attr('disabled', 'disabled')
 
     show: ->
         @$el.show()
@@ -99,6 +111,12 @@ class App.Views.RsvpModal extends Backbone.View
         else
             $group.find('.meal-group').slideDown()
 
+    handleSubmit: (evt) ->
+        evt.preventDefault()
+
+    ajaxSubmit: (form) ->
+        window.form = @$form.serializeArray()
+
     updateGuests: ->
         @$guestSection.css
             opacity: 0
@@ -109,7 +127,9 @@ class App.Views.RsvpModal extends Backbone.View
 
         guestsHtml = ""
 
-        for guestNum in [1..numGuests]
+        startingNum = 1
+
+        for guestNum in [startingNum..numGuests]
             guestsHtml += personSection(num: guestNum)
 
         @$guestSection
@@ -118,6 +138,7 @@ class App.Views.RsvpModal extends Backbone.View
             .animate(
                 { opacity: 1 },
                 complete: =>
+                    @showingGuests = true
                     @$('.modal-content').animate
                         scrollTop: "#{(@$guestSection.position().top)}px"
             )
