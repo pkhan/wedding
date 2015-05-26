@@ -319,6 +319,7 @@ class App.Views.RsvpModal extends Backbone.View
         @afterClose()
 
     afterClose: ->
+        @saving = false
         @trigger('close')
 
     slideUp: ($againstEl, duration=1000) ->
