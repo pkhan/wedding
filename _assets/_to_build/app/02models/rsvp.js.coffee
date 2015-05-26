@@ -26,6 +26,7 @@ class App.Models.Rsvp extends Backbone.Model
         @set(result)
 
     save: ->
+        deferred = $.Deferred()
         $iframe = $('<iframe></iframe>')
         $iframe.addClass 'hidden'
         $iframe.attr(
@@ -50,7 +51,8 @@ class App.Models.Rsvp extends Backbone.Model
             $form.append($input)
         $('body').append($form)
         $iframe.on('load', ->
-            console.log "ready"
+            deferred.resolve()
         )
         $form.submit()
         $form.remove()
+        deferred

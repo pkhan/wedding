@@ -45,6 +45,7 @@ class App.Views.RsvpModal extends Backbone.View
 
     clickedInside: false
     showingGuests: false
+    saving: false
 
     initialize: ->
         window.modal = @
@@ -83,7 +84,8 @@ class App.Views.RsvpModal extends Backbone.View
         @trigger('close')
 
     slideUp: ($againstEl, duration=1000) ->
-        @$('.success-message').addClass('hidden')
+        @$('.success-message').hide()
+        @$('.saving-message').hide()
         @$('.rsvp-form').show()
         @$el.css(
             top: $againstEl.height()
@@ -136,13 +138,24 @@ class App.Views.RsvpModal extends Backbone.View
             else
                 groupData[key] = val
 
-        models = for num, guest of guestData
+        deferreds = for num, guest of guestData
             model = new App.Models.Rsvp()
             model.mapAndSet(_.extend(guest, groupData))
             model.save()
-            model
 
-        @showSuccess()
+        minimumWait = $.Deferred()
+
+        window.setTimeout( ->
+            minimumWait.resolve()
+        , 2000)
+
+        deferreds.push minimumWait
+
+        $.when.apply($, deferreds).done(=>
+            @showSuccess()
+        )
+        @showSaving()
+        @animateSaving()
 
     updateGuests: ->
         @$guestSection.css
@@ -176,6 +189,27 @@ class App.Views.RsvpModal extends Backbone.View
         name = $target.val()
         $group.find('h3').text(name)
 
+    animateSaving: ->
+        hearts = @$('.save-heart')
+        index = -1
+        @savingInterval = window.setInterval( =>
+            console.log "biggen"
+            $(hearts[index]).removeClass('active') if index >= 0
+            index += 1
+            index = 0 if index > (hearts.length - 1)
+            $(hearts[index]).addClass 'active'
+            unless @saving
+                window.clearInterval @savingInterval
+        , 250)
+
+    showSaving: ->
+        @$form.slideUp()
+        @$('.saving-message').show()
+        @saving = true
+        @animateSaving()
+
     showSuccess: ->
         @$form.slideUp()
-        @$('.success-message').removeClass('hidden').animate(opacity:1)
+        @saving = false
+        @$('.saving-message').hide()
+        @$('.success-message').show()
