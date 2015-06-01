@@ -5,6 +5,7 @@ body {
 @import "_index.less";
 @import "_story.less";
 @import "_rsvp.less";
+@import "_where.less";
 
 .blanket {
   position: fixed;
@@ -49,12 +50,13 @@ body {
 .top-part {
   font-family: 'Great Vibes', cursive;
   -ms-behavior: url(/backgroundsize.min.htc);
-  background: url('/images/proposal.jpg');
-  background-size: cover;
-  background-position: 50% 56%;
   color: #fff;
   min-height: 400px;
   text-shadow: #000 3px 0px 4px;
+  &.light-background {
+    color: #000;
+    text-shadow: #FFF 3px 0px 4px;
+  }
   h1 {
     font-size: 50px;
     font-weight: 700;
@@ -84,6 +86,26 @@ body {
   &.has-error span.form-control-feedback.glyphicon-remove {
     display: inline;
   }
+}
+
+.btn {
+  background: rgb(131, 3, 0);
+  box-shadow: rgb(71, 1, 0) 3px 3px 0px 3px;
+  color: #fff;
+  &:hover {
+    color: #fff;
+    background: rgb(110, 3, 0);
+  }
+  &:active {
+    color: #fff;
+  }
+  &:visited {
+    color: #fff;
+  }
+  &[disabled] {
+    background: rgb(100, 100, 100);
+    box-shadow: rgb(71, 71, 71) 3px 3px 0px 3px;
+  }  
 }
 
 .centered {
@@ -118,3 +140,5 @@ body {
 .no-scroll {
   overflow: hidden;
 }
+
+@import "_venues.less";

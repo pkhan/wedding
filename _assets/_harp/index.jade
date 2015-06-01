@@ -16,33 +16,7 @@
             .row
                 a#rsvp.btn(href="/rsvp") RSVP
 
-    .outer-row.info-header.hidden-xs
-        .container.centered
-            .row.header-part
-                .col-sm-6
-                    h4.venue-type ceremony
-                .col-sm-6
-                    h4.venue-type reception
-
-    .outer-row.middle-part
-        .container.centered
-            .row.info-row
-                .col-sm-6.info-block.to-edge
-                    h4.venue-type.visible-xs-block.hidden-sm ceremony
-                    h2.venue-name Nativity Church
-                    p.address.
-                        210 Oak Grove Avenue
-                        <br>
-                        Menlo Park, California
-                    h4.time 2:00 PM
-                .col-sm-6.info-block.to-edge
-                    h4.venue-type.visible-xs-block.hidden-sm reception
-                    h2.venue-name Garden Court Hotel
-                    p.address.
-                        520 Cowper Street
-                        <br>
-                        Palo Alto, California
-                    h4.time 5:00 PM
+    include ./_partials/_venues.jade
 
     .outer-row.picture-break
 
