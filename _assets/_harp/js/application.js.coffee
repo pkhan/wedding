@@ -521,6 +521,7 @@ class App.Views.Where extends Backbone.View
         @$("button[data-mode='#{@mode}']").addClass('active')
 
         @$to.find("option[value='Garden+Court+Hotel,+Cowper+Street,+Palo+Alto,+CA,+United+States']").attr("selected", true)
+        @$from.find("option[value='Church+of+the+Nativity,+Oak+Grove+Avenue,+Menlo+Park,+CA,+United+States']").attr("selected", true)
 
     modeChange: (evt)->
         $target = $(evt.target)
