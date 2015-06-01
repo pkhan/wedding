@@ -96,16 +96,28 @@ body {
     color: #fff;
     background: rgb(110, 3, 0);
   }
-  &:active {
+  &.active, &:active {
     color: #fff;
+    background: rgb(71, 1, 0);
   }
   &:visited {
+    color: #fff;
+  }
+  &:focus {
     color: #fff;
   }
   &[disabled] {
     background: rgb(100, 100, 100);
     box-shadow: rgb(71, 71, 71) 3px 3px 0px 3px;
-  }  
+  }
+}
+
+.btn-group {
+  border-radius: 6px;
+  box-shadow: rgb(71, 1, 0) 3px 3px 0px 3px;
+  .btn {
+    box-shadow: none;
+  }
 }
 
 .centered {
@@ -139,6 +151,11 @@ body {
 
 .no-scroll {
   overflow: hidden;
+}
+
+.pad-me {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 @import "_venues.less";

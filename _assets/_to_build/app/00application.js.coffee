@@ -24,5 +24,7 @@ class App.Router extends Backbone.Router
         homeView = new App.Views.Home()
     rsvp: ->
         homeView = new App.Views.Home(true)
+    where: ->
+        whereView = new App.Views.Where()
 
 App.router = new App.Router
