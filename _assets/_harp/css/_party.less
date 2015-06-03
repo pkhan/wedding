@@ -18,8 +18,34 @@
     }
 
     .party-desc-outer {
-      max-width: 200px;
+      width: 200px;
+      padding-top: 20px;
     }
 
+    .girl-party .party-face-outer {
+      margin-left: 40px;
+    }
+    .boy-party .party-face-outer {
+      margin-right: 40px;
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    .party-list {
+      .party-face {
+        height: 150px;
+        width: 150px;
+      }
+
+      .party-desc-outer {
+        width: 150px;
+        padding-left: 15px;
+      }
+
+      .col-party {
+        padding: 0 5px;
+      }
+    }
   }
 }
