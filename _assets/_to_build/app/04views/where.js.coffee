@@ -6,7 +6,7 @@ class App.Views.Where extends Backbone.View
 
     events:
         'change .direction-choices' : 'directionChange'
-        'click .direction-mode' : 'modeChange'
+        'click .direction-mode button' : 'modeChange'
 
     initialize: ->
         @$from = @$('#from-picker')
