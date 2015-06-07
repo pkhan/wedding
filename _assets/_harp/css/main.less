@@ -113,6 +113,42 @@ body {
   }
 }
 
+.nav-outer {
+  .nav-list {
+    list-decoration: none;
+    padding: 0;
+    margin: 5px 0;
+    font-size: 0;
+
+    li {
+      display: inline-block;
+      font-size: 20px;
+    }
+
+    .nav-item {
+      width: 200px;
+      padding-right: 10px;
+      padding-left: 10px;
+
+      a {
+        display: block;
+
+        &:hover, &:active {
+          background-color: rgb(131, 3, 0);
+          color: white;
+        }
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
 .btn-group {
   border-radius: 6px;
   box-shadow: rgb(71, 1, 0) 3px 3px 0px 3px;

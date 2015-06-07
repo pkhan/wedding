@@ -52,7 +52,7 @@ App.Collections = {}
 $(document).ready ->
     App.appView = new Backbone.View
         el: 'body'
-    Backbone.history.start(pushState: true)
+    Backbone.history.start(pushState: true, hashChange: false)
 
 class App.Router extends Backbone.Router
     routes:
