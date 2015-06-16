@@ -1,2 +1,63 @@
-h1 Welcome to Harp.
-h3 This is yours to own. Enjoy.
+#registries-page
+    .outer-row.top-part.light-background
+        .container.centered
+            .row
+                h1.page-title Registry and Honeymoon
+
+    .outer-row.alt-background
+        .container.centered
+            .row
+                .col-xs-12
+                    h2 Registry
+
+    .outer-row
+        .container.centered.pad-me
+            .row
+                .col-xs-12
+                    h3 We are registered at Crate &amp; Barrel
+            .row
+                .col-xs-12
+                    a.btn.btn-lg(href="http://www.crateandbarrel.com/Gift-Registry/christine-geibel-and-patrick-conway/r5277427" target="_blank") View Registry
+
+    .outer-row.alt-background
+        .container.centered
+            .row
+                .col-xs-12
+                    h2 Or Fund Our Honeymoon
+
+    .outer-row
+        .container.centered
+            .row
+                .col-xs-12
+                    h3 If you can't find anything on our registry, you can contribute to our honeymoon to Europe
+
+            .row.honeymoon-item-row.pad-me
+                .col-sm-6.thing-image
+                    p
+                        span.fa.fa-glass 
+                        span.fa.fa-beer
+                .col-sm-6.thing-description
+                    h4 
+                        span Drinks! 
+                        span.cost $10.00
+                    p The most important honeymoon add-on. 
+                    .cart-section.form-inline
+                        .form-group.form-group-lg
+                            label.control-label(for="drink-qty") Quantity
+                            input#drink-qty.form-control.quantity(type="number", min=1, inputmode="numeric", name="drinkQty", value=1)
+                        button.btn Add to Cart
+
+            .row.honeymoon-item-row.pad-me
+                .col-sm-6.thing-image
+                    p
+                        span.fa.fa-bed 
+                .col-sm-6.thing-description
+                    h4 
+                        span Hotel Room For a Night 
+                        span $100
+                    p Wait no, this is the most important honeymoon add-on. 
+                    .cart-section.form-inline
+                        .form-group.form-group-lg
+                            label.control-label(for="hotel-qty") Quantity
+                            input#hotel-qty.form-control.quantity(type="number", min=1, inputmode="numeric", name="hotelQty", value=1)
+                        button.btn Add to Cart
