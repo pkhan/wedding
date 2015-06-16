@@ -570,7 +570,6 @@ App.Views.RsvpModal = (function(_super) {
     index = -1;
     return this.savingInterval = window.setInterval((function(_this) {
       return function() {
-        console.log("biggen");
         if (index >= 0) {
           $(hearts[index]).removeClass('active');
         }
@@ -652,8 +651,6 @@ App.Views.StoryHeader = (function(_super) {
     var duration, height;
     height = this.height + 100;
     duration = 2000 - delay;
-    console.log(duration);
-    console.log("hey");
     return setTimeout((function(_this) {
       return function() {
         return $layer.animate({

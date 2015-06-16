@@ -31,8 +31,6 @@ class App.Views.StoryHeader extends Backbone.View
     animateLayer: ($layer, delay)->
         height = @height + 100
         duration = 2000 - (delay)
-        console.log duration
-        console.log "hey"
         setTimeout( =>
             $layer.animate(
                 { "top" : "-#{height}%" },

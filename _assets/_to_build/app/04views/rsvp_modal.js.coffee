@@ -194,7 +194,6 @@ class App.Views.RsvpModal extends Backbone.View
         hearts = @$('.save-heart')
         index = -1
         @savingInterval = window.setInterval( =>
-            console.log "biggen"
             $(hearts[index]).removeClass('active') if index >= 0
             index += 1
             index = 0 if index > (hearts.length - 1)

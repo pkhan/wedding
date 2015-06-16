@@ -434,7 +434,6 @@ class App.Views.RsvpModal extends Backbone.View
         hearts = @$('.save-heart')
         index = -1
         @savingInterval = window.setInterval( =>
-            console.log "biggen"
             $(hearts[index]).removeClass('active') if index >= 0
             index += 1
             index = 0 if index > (hearts.length - 1)
@@ -488,8 +487,6 @@ class App.Views.StoryHeader extends Backbone.View
     animateLayer: ($layer, delay)->
         height = @height + 100
         duration = 2000 - (delay)
-        console.log duration
-        console.log "hey"
         setTimeout( =>
             $layer.animate(
                 { "top" : "-#{height}%" },
