@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         dest: 'build/vendor.js',
         cssDest: 'build/vendor.css',
         dependencies: {
+          'jquery-validation' : 'jquery',
           'backbone': ['underscore', 'jquery'],
           'bootstrap': 'jquery'
         },
@@ -33,7 +34,7 @@ module.exports = function(grunt) {
     },
     concat: {
       app: {
-        src: ['app/00application.js.coffee', 'app/*/*'],
+        src: ['app/00utils/*', 'app/00application.js.coffee', 'app/*/*'],
         dest: '../_harp/js/application.js.coffee'
       }
     },

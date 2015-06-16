@@ -1,0 +1,200 @@
+#index-page {
+  @media (max-width: 768px) {
+    .picture-break {
+      min-height: 200px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .date-line {
+      margin-top: 190px;
+    }
+  }
+
+  .top-part {
+    background-image: url('/images/proposal.jpg');
+    background-position: 50% 56%;
+    background-size: cover;
+  }
+
+  @media (max-width: 768px) {
+    .top-part h1 {
+      font-size: 40px;
+    }
+    .top-part .date-line {
+      margin-top: 50px;
+    }
+  }
+
+  .picture-break {
+    background: url('/images/looking-right.jpg');
+    background-size: cover;
+    background-position: 0 25%;
+  }
+
+  .bottom-part {
+    background: url('/images/proposal.jpg');
+    background-position: 50% 65%;
+    min-height: 300px;
+    background-size: 100%;
+  }
+
+  .nav-row {
+    height: 80px;
+  }
+
+  .hotel-name {
+    border-bottom: solid 3px #333;
+  }
+
+  .nav-bar {
+    line-height: 40px;
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+    .nav-item {
+      display: inline-block;
+      width: 33%;
+    }
+  }
+
+  .rsvp-row {
+    padding: 20px;
+  }
+
+  .rsvp-form {
+    margin: 20px 0;
+  }
+
+  #rsvp {
+    font-size: 40px;
+    padding: 10px 30px;
+    border-radius: 26px;
+  }
+
+  .curtain {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .6;
+  }
+
+  .modal {
+    .modal-dialog {
+      height: 100%;
+      .modal-content {
+        max-height: 85%;
+        overflow: scroll;
+      }
+    }
+
+  }
+
+  .rsvp-form {
+    text-align: left;
+
+    .guest-section {
+      opacity: 0;
+      display: none;
+    }
+
+    .guest-group {
+      padding-left: 15px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border-left: 1px solid #CCC;
+    }
+  }
+
+  .heart-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  span.no-wrap {
+    white-space: nowrap;
+  }
+
+  .the-map {
+    width: 100%;
+    height: 100%;
+  }
+
+  .where-to-stay {
+    padding-bottom: 20px;
+  }
+
+  .block-days {
+    font-size: 0;
+    .block-day {
+      font-size: 14px;
+      display: inline-block;
+      border-right: solid 1px #000;
+      // padding: 0 10px;
+      width: 65px;
+      &:last-child{
+        margin-right: 0;
+        border-right: none;
+      }
+    }
+  }
+
+  .hotel-info {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    // &:hover {
+    //   border: solid 1px #778EA4;
+    //   padding-top: 0;
+    //   padding-bottom: 0;
+    //   padding-left: 14px;
+    //   padding-right: 14px;
+    // }
+  }
+
+  .registry {
+    padding-bottom: 40px;
+    .row {
+      // padding-top: 80px;
+      // padding-bottom: 40px;
+    }
+  }
+
+  .map-outer {
+    position: relative;
+    height: 500px;
+    .grab-bar {
+      position: absolute;
+      top: 0;
+      width: 25%;
+      bottom: 0;
+      &.left-grab {
+        left: 0;
+        // top: 80px;
+      }
+      &.right-grab {
+        right: 0;
+        // top: 30px;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .map-outer {
+      height: 400px;
+    }
+  }
+
+  .saving-line .glyphicon-heart {
+    -webkit-transition: font-size .5s;
+    transition: font-size .5s;
+    &.active {
+      font-size: 40px;
+    }
+  }
+
+}
