@@ -90,6 +90,7 @@ class App.Models.Rsvp extends Backbone.Model
         groupSong: 'entry.2036395429'
         groupEmail: 'entry.1033845525'
         domain:     'entry.739322273'
+        serializedForm: 'entry.1547193837'
 
     mapAndSet: (obj) ->
         result = {}
@@ -362,8 +363,10 @@ class App.Views.RsvpModal extends Backbone.View
 
     ajaxSubmit: (form) ->
         formData = @$form.serializeArray()
-        groupData = {}
-        guestData = {} 
+        groupData = {
+            serializedForm: @$form.serialize()
+        }
+        guestData = {}
         models = []
         for input in formData
             key = input.name

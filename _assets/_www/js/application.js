@@ -159,7 +159,8 @@ App.Models.Rsvp = (function(_super) {
     guestMeal: 'entry.763928453',
     groupSong: 'entry.2036395429',
     groupEmail: 'entry.1033845525',
-    domain: 'entry.739322273'
+    domain: 'entry.739322273',
+    serializedForm: 'entry.1547193837'
   };
 
   Rsvp.prototype.mapAndSet = function(obj) {
@@ -483,7 +484,9 @@ App.Views.RsvpModal = (function(_super) {
   RsvpModal.prototype.ajaxSubmit = function(form) {
     var deferreds, formData, groupData, guest, guestData, input, key, keyParts, minimumWait, model, models, name, num, val, _i, _len;
     formData = this.$form.serializeArray();
-    groupData = {};
+    groupData = {
+      serializedForm: this.$form.serialize()
+    };
     guestData = {};
     models = [];
     for (_i = 0, _len = formData.length; _i < _len; _i++) {

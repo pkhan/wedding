@@ -122,8 +122,10 @@ class App.Views.RsvpModal extends Backbone.View
 
     ajaxSubmit: (form) ->
         formData = @$form.serializeArray()
-        groupData = {}
-        guestData = {} 
+        groupData = {
+            serializedForm: @$form.serialize()
+        }
+        guestData = {}
         models = []
         for input in formData
             key = input.name
