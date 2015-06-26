@@ -75,10 +75,14 @@ class App.Views.RsvpModal extends Backbone.View
 
     show: ->
         @$el.show()
+        @afterShow()
 
     hide: ->
         @$el.hide()
         @afterClose()
+
+    afterShow: ->
+        mixpanel.track("RSVP show")
 
     afterClose: ->
         @saving = false
@@ -96,6 +100,7 @@ class App.Views.RsvpModal extends Backbone.View
             complete: () =>
                 @$('input').first().focus()
         )
+        @afterShow()
 
     fadeOut: ->
         @$el.fadeOut()
@@ -122,24 +127,27 @@ class App.Views.RsvpModal extends Backbone.View
 
     ajaxSubmit: (form) ->
         formData = @$form.serializeArray()
-        groupData = {
-            serializedForm: @$form.serialize()
-        }
+        allData = {}
+        groupData = {}
         guestData = {}
         models = []
         for input in formData
             key = input.name
             val = input.value
+            allData[key] = val
+            
             keyParts = key.split '-'
             name = keyParts[0]
             num = keyParts[1]
-
             if num
                 # is a guest input
                 guestData[num] ||= {}
                 guestData[num][name] = val
             else
                 groupData[key] = val
+
+        mixpanel.track("RSVP Submit", allData)
+        groupData.serializedForm = JSON.stringify(allData)
 
         deferreds = for num, guest of guestData
             model = new App.Models.Rsvp()
