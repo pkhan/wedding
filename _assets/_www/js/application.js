@@ -415,12 +415,17 @@ App.Views.RsvpModal = (function(_super) {
   };
 
   RsvpModal.prototype.show = function() {
-    return this.$el.show();
+    this.$el.show();
+    return this.afterShow();
   };
 
   RsvpModal.prototype.hide = function() {
     this.$el.hide();
     return this.afterClose();
+  };
+
+  RsvpModal.prototype.afterShow = function() {
+    return mixpanel.track("RSVP show");
   };
 
   RsvpModal.prototype.afterClose = function() {
@@ -435,7 +440,7 @@ App.Views.RsvpModal = (function(_super) {
     this.$('.success-message').hide();
     this.$('.saving-message').hide();
     this.$('.rsvp-form').show();
-    return this.$el.css({
+    this.$el.css({
       top: $againstEl.height()
     }).show().animate({
       top: 0
@@ -447,6 +452,7 @@ App.Views.RsvpModal = (function(_super) {
         };
       })(this)
     });
+    return this.afterShow();
   };
 
   RsvpModal.prototype.fadeOut = function() {
@@ -482,17 +488,17 @@ App.Views.RsvpModal = (function(_super) {
   };
 
   RsvpModal.prototype.ajaxSubmit = function(form) {
-    var deferreds, formData, groupData, guest, guestData, input, key, keyParts, minimumWait, model, models, name, num, val, _i, _len;
+    var allData, deferreds, formData, groupData, guest, guestData, input, key, keyParts, minimumWait, model, models, name, num, val, _i, _len;
     formData = this.$form.serializeArray();
-    groupData = {
-      serializedForm: this.$form.serialize()
-    };
+    allData = {};
+    groupData = {};
     guestData = {};
     models = [];
     for (_i = 0, _len = formData.length; _i < _len; _i++) {
       input = formData[_i];
       key = input.name;
       val = input.value;
+      allData[key] = val;
       keyParts = key.split('-');
       name = keyParts[0];
       num = keyParts[1];
@@ -503,6 +509,8 @@ App.Views.RsvpModal = (function(_super) {
         groupData[key] = val;
       }
     }
+    mixpanel.track("RSVP Submit", allData);
+    groupData.serializedForm = JSON.stringify(allData);
     deferreds = (function() {
       var _results;
       _results = [];
