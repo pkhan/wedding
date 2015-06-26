@@ -510,7 +510,11 @@ App.Views.RsvpModal = (function(_super) {
       }
     }
     mixpanel.track("RSVP Submit", allData);
-    groupData.serializedForm = JSON.stringify(allData);
+    if ((typeof JSON !== "undefined" && JSON !== null) && (JSON.stringify != null)) {
+      groupData.serializedForm = JSON.stringify(allData);
+    } else {
+      groupData.serializedForm = this.$form.serialize();
+    }
     deferreds = (function() {
       var _results;
       _results = [];

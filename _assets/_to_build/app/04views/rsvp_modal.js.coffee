@@ -147,7 +147,10 @@ class App.Views.RsvpModal extends Backbone.View
                 groupData[key] = val
 
         mixpanel.track("RSVP Submit", allData)
-        groupData.serializedForm = JSON.stringify(allData)
+        if JSON? and JSON.stringify?
+            groupData.serializedForm = JSON.stringify(allData)
+        else
+            groupData.serializedForm = @$form.serialize()
 
         deferreds = for num, guest of guestData
             model = new App.Models.Rsvp()
