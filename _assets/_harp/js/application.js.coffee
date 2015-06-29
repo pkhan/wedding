@@ -267,6 +267,7 @@ personSection = _.template("""
                     <option value="beef">Beef short rib</option>
                     <option value="chicken">Chicken piccata</option>
                     <option value="veggie">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
                 </select>
             </div>
         </div>
