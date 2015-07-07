@@ -251,13 +251,13 @@ personSection = _.template("""
         <div class="form-group attendance-group">
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" class="attendance attendance-yes" name="guestAttendance-<%= num %>" value="yes" required="required">
+                    <input type="radio" class="attendance attendance-yes" name="guestAttendance-<%= num %>" value="yes" required>
                     <span>Will be attending</span>
                 </label>
             </div>
             <div class="radio input-lg">
                 <label>
-                    <input type="radio" class="attendance attendance-no" name="guestAttendance-<%= num %>" value="no" required="required">
+                    <input type="radio" class="attendance attendance-no" name="guestAttendance-<%= num %>" value="no">
                     <span>Will not be attending</span>
                 </label>
             </div>
@@ -268,6 +268,7 @@ personSection = _.template("""
                     <option value="chicken">Chicken piccata</option>
                     <option value="veggie">Vegetarian</option>
                     <option value="vegan">Vegan</option>
+                    <option value="child">Children's Meal</option>
                 </select>
             </div>
         </div>
@@ -280,8 +281,8 @@ class App.Views.RsvpModal extends Backbone.View
         'click .close': 'fadeOut'
         'click' : 'outerClick'
         'click .modal-dialog': 'innerClick'
-        'click #update-guest': 'updateGuests'
         'input .person-name': 'updateName'
+        'change #party-size': 'updateGuests'
         'change .attendance': 'handleAttendance'
         'submit .rsvp-form': 'handleSubmit'
 
