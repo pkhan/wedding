@@ -174,6 +174,15 @@ class App.Views.RsvpModal extends Backbone.View
         @animateSaving()
 
     updateGuests: ->
+        formData = @$form.serializeArray()
+        allData = {}
+        for input in formData
+            key = input.name
+            val = input.value
+            allData[key] = val
+
+        mixpanel.track("RSVP Update Guest Count", allData)
+
         @$guestSection.css
             opacity: 0
             display: 'none'
