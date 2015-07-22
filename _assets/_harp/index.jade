@@ -189,7 +189,7 @@
                             span.glyphicon.glyphicon-ok.form-control-feedback 
                             span.glyphicon.glyphicon-remove.form-control-feedback 
                         .form-group.form-group-lg
-                            label.control-label(for="party-size") Your group size (also include those invited but not attending)
+                            label.control-label(for="party-size") Your group size (Please include both acceptances and regrets.)
                             select.form-control#party-size(name="groupSize" required)
                                 option(value="") Select your group size
                                 option(value=1) 1
@@ -205,7 +205,7 @@
 
                         .form-group.form-group-lg
                             label.control-label(for="song-input") Recommend song(s) for the reception, comma separated
-                            input#song-input.form-control(type="text", placeholder="Uptown Funk", name="groupSong")
+                            input#song-input.form-control(type="text", placeholder="Uptown Funk - Mark Ronson", name="groupSong")
 
                         .form-group.form-group-lg
                             input.btn.btn-lg#rsvp-submit(type="submit", disabled, value="Submit")
